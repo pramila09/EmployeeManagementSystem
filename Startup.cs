@@ -22,15 +22,15 @@ namespace EmployeeMangementSystem
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var sqlConnectionString = Configuration["SqlConnectionString"];
+            var sqlConnectionString = Configuration["ConnectionStrings::SqlConnectionString"];
             services.AddDbContext<PostgreSqlContext>
-                (options => options.UseNpgsql(sqlConnectionString));
+                (options => options.UseNpgsql(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddScoped<IDataAccessProvider, DataAccessProvider>();
         }
 
