@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeMangementSystem.DataAccess
 {
-    interface IDataAccessProvider
+    public interface IDataAccessProvider
     {
         void AddEmployee(Employee employee);
         void UpdateEmployee(Employee employee);
